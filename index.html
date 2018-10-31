@@ -29,12 +29,18 @@
     <div id="inner-circle">
       <div id="title" class="font-effect-emboss">SIMON!</div>
       <div id="switches">
-        <input type="checkbox" class="toggle" id="on">
-        <button class="button" id="start">Start</button>
-        <input type="checkbox" class="toggle" id="strict">
+          <label for="on" class="switch power-switch">
+              <input type="checkbox" class="toggle" id="on">
+              <span class="slider round"></span>
+          </label>
+          <button class="button" id="start">Start</button>
+          <label for="hard" class="switch hard-switch">
+              <input type="checkbox" class="toggle" id="hard">
+              <span class="slider round"></span>
+          </label>
       </div>
       <div class="text1">
-        <span>POWER</span><span>STRICT</span>
+        <span>POWER</span><span>HARD</span>
       </div>
       <div id="turn"></div>
       <div class="text2">
