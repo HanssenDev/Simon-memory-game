@@ -87,41 +87,24 @@ function gameTurn () {
     }
 }
 
+
 function one() {
-    if (noise) {
-        let audio = document.getElementById("clip1");
-        audio.play();
-    }
-    noise = true;
-    topLeft.style.backgroundColor = "lightgreen";
+    return playASound("clip1", topLeft, "lightgreen");
 }
 
 function two() {
-    if (noise) {
-        let audio = document.getElementById("clip2");
-        audio.play();
-    }
-    noise = true;
-    topRight.style.backgroundColor = "tomato";
+    return playASound("clip2", topRight, "tomato");
 }
 
 function three() {
-    if (noise) {
-        let audio = document.getElementById("clip3");
-        audio.play();
-    }
-    noise = true;
-    bottomLeft.style.backgroundColor = "yellow";
+    return playASound("clip3", bottomLeft, "yellow");
 }
 
 function four() {
-    if (noise) {
-        let audio = document.getElementById("clip4");
-        audio.play();
-    }
-    noise = true;
-    bottomRight.style.backgroundColor = "lightskyblue";
+    return playASound("clip4", bottomRight, "lightskyblue");
 }
+
+
 
 
 function clearColor () {
@@ -139,56 +122,44 @@ function flashColor () {
 }
 
 topLeft.addEventListener('click', (event) => {
-    if (on) {
-        playerOrder.push(1);
-        check();
-        one();
-        if(!win) {
-            setTimeout(() => {
-                clearColor();
-            }, 300);
-        }
-    }
+    clickInAButton(one);
 })
 
 topRight.addEventListener('click', (event) => {
-    if (on) {
-        playerOrder.push(2);
-        check();
-        two();
-        if(!win) {
-            setTimeout(() => {
-                clearColor();
-            }, 300);
-        }
-    }
+    clickInAButton(two);
 })
 
 bottomLeft.addEventListener('click', (event) => {
-    if (on) {
-        playerOrder.push(3);
-        check();
-        three();
-        if(!win) {
-            setTimeout(() => {
-                clearColor();
-            }, 300);
-        }
-    }
+    clickInAButton(three);
 })
 
 bottomRight.addEventListener('click', (event) => {
+    clickInAButton(four);
+})
+
+function clickInAButton(numberFn) {
     if (on) {
-        playerOrder.push(4);
+        playerOrder.push(numberFn());
         check();
-        four();
+        
         if(!win) {
             setTimeout(() => {
                 clearColor();
             }, 300);
         }
     }
-})
+}
+
+function playASound(elementId, elementToChange, color){
+    if (noise) {
+        let audio = document.getElementById(elementId);
+        audio.play();
+    }
+    
+    noise = true;
+    elementToChange.style.backgroundColor = color;
+    return Number(elementId.substr(4));
+}
 
 
 function check() {
